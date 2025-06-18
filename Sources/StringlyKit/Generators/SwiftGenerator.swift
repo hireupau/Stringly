@@ -25,9 +25,11 @@ public struct SwiftGenerator: Generator {
 
         import Foundation
 
+        @MainActor
         public enum \(namespace) {\(content)
         }
 
+        @MainActor
         public protocol StringGroup {
             static var localizationKey: String { get }
         }
@@ -42,7 +44,7 @@ public struct SwiftGenerator: Generator {
         extension \(namespace) {
 
             /// The bundle uses for localization
-            public static var bundle: Bundle = Bundle(for: BundleToken.self)
+            public static let bundle: Bundle = Bundle(for: BundleToken.self)
 
             /// Allows overriding any particular key, for A/B tests for example. Values need to be correct for the current language
             public static var overrides: [String: String] = [:]
